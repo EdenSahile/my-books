@@ -1,6 +1,25 @@
-import React from 'react'
+import React,{useState} from 'react'
 
 const SearchBooks = () => {
+
+
+  const [title, setTitle]=useState('')
+
+
+  const handleSubmit=(e)=>{
+    e.preventDefault(e)
+    console.log(title)
+    setTitle('')
+
+  }
+
+
+const handleChange=(e)=>{
+  setTitle(e.target.value)
+
+}
+
+
   return (
     <main role="main">
       <div className="container-fluid">
@@ -8,7 +27,7 @@ const SearchBooks = () => {
           <h1 className="display-4">BOOKS</h1>
           <p>Indiquer le sujet du livre à rechercher sur Google API</p>
 
-          <form className="form-inline justify-content-center">
+          <form className="form-inline justify-content-center" onSubmit={handleSubmit}>
             <div className="row offset-md-4">
               <div className="col-md-6">
                 <input
@@ -16,6 +35,8 @@ const SearchBooks = () => {
                   className="form-control"
                   placeholder="Votre recherche"
                   required
+                  value={title}
+                  onChange={(e)=>handleChange(e)}
                 />
               </div>
 
