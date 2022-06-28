@@ -43,6 +43,11 @@ libraryData.map(data=>{
 <p className="text-center">Aucune data à afficher</p>
 
 
+const deletedAllBooks = libraryData.length > 0 && (
+  <button className="btn btn-danger mt-4 mb-5">Effacer tous les livres</button>
+);
+
+
  
   return (
     <main role="main">
@@ -95,8 +100,8 @@ libraryData.map(data=>{
           <div className="col-md-12">
             <ul className="list-group">{displayData}</ul>
             <div className="d-flex justify-content-center">
-                <button className="btn btn-danger mt-4 mb-5">Effacer tous les livres
-                </button></div>
+              {deletedAllBooks}
+            </div>
           </div>
         </div>
       </div>
