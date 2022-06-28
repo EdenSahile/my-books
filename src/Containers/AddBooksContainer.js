@@ -1,19 +1,30 @@
 import React,{useState} from "react";
-const AddBooksContainer = () => {
+import { connect } from "react-redux";
+import { addBook } from "../redux/actions/actions";
 
-    const [newData, setNewData]=useState({
+const AddBooksContainer = ({ libraryData, addBook }) => {
+
+  const [newData, setNewData] = useState({
+    title: "",
+    author: "",
+  });
+
+  console.log(libraryData)
+
+  const handleSubmit = (e) => {
+
+    e.preventDefault();
+
+    addBook(newData)
+    
+    setNewData({
         title:"",
         author:""
     })
+};
 
-
-
-const handleSubmit=(e)=>{
-    e.preventDefault();
-    console.log(newData);
-
-}
-
+ 
+ 
   return (
     <main role="main">
       <div className="container-fluid">
@@ -21,7 +32,10 @@ const handleSubmit=(e)=>{
           <h1 className="display-4">BOOKS</h1>
           <p>Ajouter un livre à votre bibliothèque</p>
 
-          <form className="form-inline justify-content-center" onSubmit={handleSubmit}>
+          <form
+            className="form-inline justify-content-center"
+            onSubmit={handleSubmit}
+          >
             <div className="row offset-md-4">
               <div className="col-md-3">
                 <input
@@ -75,4 +89,26 @@ const handleSubmit=(e)=>{
   );
 };
 
-export default AddBooksContainer;
+const mapStateToProps=(state)=>{
+
+    return{
+
+       libraryData:state.library
+
+
+    }
+}
+
+const mapDispatchToProps=(dispatch)=>{
+
+    return{
+
+        
+       addBook:(param)=>dispatch(addBook(param))
+
+
+    }
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps) (AddBooksContainer);

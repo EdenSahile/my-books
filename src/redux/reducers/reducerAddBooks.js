@@ -1,5 +1,5 @@
 import {ADD_BOOK} from '../constants';
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuiv4 } from "uuid";
 
 const initialState={
    
@@ -7,27 +7,33 @@ const initialState={
 }
 
 const helperAddData=(action)=>{
-    return{
-
-        id:uuidv4(),
-        title:action.payload.title,
-        author:action.payload.author,
-         
-    }
+    return {
+      id: uuiv4(),
+      title: action.payload.title,
+      author: action.payload.author,
+    };
 }
 
 const reducerAddBooks=(state=initialState.books, action)=>{
 
-    switch (action.payload) {
+    if(localStorage.getItem("booksData")) {
+      state = JSON.parse(localStorage.getItem("booksData"));
+    }
+
+
+
+    switch (action.type) {
+
       case ADD_BOOK:
        
-            state=[...state, helperAddData(action)]
+        state=[...state, helperAddData(action)]
+            localStorage.setItem("booksData",JSON.stringify(state));
             return state;
            
         default:
-        return state
+            return state
     }
 
    
 }
-export  default reducerAddBooks
+export default reducerAddBooks
