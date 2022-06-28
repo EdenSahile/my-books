@@ -27,6 +27,75 @@ const handleChange=(e)=>{
 }
 
 
+
+const displayFetchedBooks=data.isLoading ?(
+  <div className='d-flex justify-content-center'>
+      <div className='spinner-border text-info' role='status'>
+        <span className='sr-only'>Loading ...</span>
+      </div>
+  </div>
+
+):
+data.error !== ''?(
+  <p>{data.error}</p>
+
+)
+:
+(
+  data.books.map(item=>{
+
+    return (
+      <div className="accordion" key={item.id}>
+        <div className="card mb-2">
+          <div className="card-header">
+            <h5 className="mb-0">
+              <button
+                className="btn btn-link collapsed"
+                data-toggle="collapse"
+                data-target={`#${item.id}`}
+                aria-expanded="false"
+              >
+                {item.volumeInfo.title}
+              </button>
+            </h5>
+            <div id={item.id} className="collapse" data-parent="accordion">
+              <div className="card-body">
+
+                {item.volumeInfo.hasOwnProperty('imageLinks') &&
+                <img src={item.volumeInfo.imageLinks.thumbnail}
+                  alt={item.volumeInfo.title}
+                />
+
+                }
+                
+                <br />
+                <h4 className="card-title"> Titre : {item.volumeInfo.title}</h4>
+                <h5 className="card-title">
+                  {" "}
+                  Auteurs :{item.volumeInfo.authors}
+                </h5>
+                <p className="card-text">
+                  Description :{item.volumeInfo.description}
+                </p>
+                <a
+                  className="btn btn-outline-secondary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={item.volumeInfo.previewLink}
+                >
+                  Plus d'infos
+                  <button className='btn btn-outline-secondary'>Enregistrer</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  })
+
+  
+)
   return (
     <main role="main">
       <div className="container-fluid">
@@ -34,7 +103,10 @@ const handleChange=(e)=>{
           <h1 className="display-4">BOOKS</h1>
           <p>Indiquer le sujet du livre à rechercher sur Google API</p>
 
-          <form className="form-inline justify-content-center" onSubmit={handleSubmit}>
+          <form
+            className="form-inline justify-content-center"
+            onSubmit={handleSubmit}
+          >
             <div className="row offset-md-4">
               <div className="col-md-6">
                 <input
@@ -43,7 +115,7 @@ const handleChange=(e)=>{
                   placeholder="Votre recherche"
                   required
                   value={title}
-                  onChange={(e)=>handleChange(e)}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
 
@@ -58,23 +130,7 @@ const handleChange=(e)=>{
       </div>
 
       <div className="container" style={{ minHeight: "200px" }}>
-        <div className='accordion'>
-          <div className='card mb-2'>
-            <div className='card-header'>
-              <div className='collapse' data-parent='accordion'>
-                <div className='card-body'>
-                  {/* 
-                  -image si on a
-                  - titre du livre
-                  -description
-                  -btn plus d'infos
-                  - btn enregistrer
-                   */}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        {displayFetchedBooks}
       </div>
     </main>
   );
