@@ -1,15 +1,22 @@
 import React,{useState} from 'react'
+import { useSelector,useDispatch } from 'react-redux'
+import {fetchBooks} from '../redux/actions/actionsFetchBooks'
+
 
 const SearchBooks = () => {
 
 
   const [title, setTitle]=useState('')
 
+  const data=useSelector(state=>state.search)
+  console.log(data)
+  const dispatch=useDispatch()
+
 
   const handleSubmit=(e)=>{
     e.preventDefault(e)
-    console.log(title)
-    setTitle('')
+    // console.log(title)
+    dispatch(fetchBooks(title))
 
   }
 
