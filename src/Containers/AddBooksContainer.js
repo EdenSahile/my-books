@@ -1,5 +1,12 @@
-import React from "react";
+import React,{useState} from "react";
 const AddBooksContainer = () => {
+
+    const [newData, setNewData]=useState({
+        title:"",
+        author:""
+    })
+
+console.log(newData)
 
   return (
     <main role="main">
@@ -15,6 +22,10 @@ const AddBooksContainer = () => {
                   type="text"
                   className="form-control"
                   placeholder="Titre"
+                  value={newData.title}
+                  onChange={(e) =>
+                    setNewData({ ...newData, title: e.target.value })
+                  }
                   required
                 />
               </div>
@@ -23,6 +34,10 @@ const AddBooksContainer = () => {
                   type="text"
                   className="form-control  "
                   placeholder="Auteur"
+                  value={newData.author}
+                  onChange={(e) =>
+                    setNewData({ ...newData, author: e.target.value })
+                  }
                   required
                 />
               </div>
