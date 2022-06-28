@@ -13,4 +13,6 @@
 - Redux
   - Thunk
   - ApplyMiddleware
-  
+
+
+

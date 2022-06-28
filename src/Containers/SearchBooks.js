@@ -52,13 +52,17 @@ data.error !== ''?(
             <button
               className="btn btn-link collapsed text-dark text-decoration-none fs-5"
               data-bs-toggle="collapse"
-              data-bs-target={`#${item.id}`}
+              data-bs-target={`#b${item.id}`}
               aria-expanded="false"
             >
               {item.volumeInfo.title}
             </button>
           </h4>
-          <div id={item.id} className="collapse" data-bs-parent="#accordion">
+          <div
+            id={`b${item.id}`}
+            className="collapse"
+            data-bs-parent="#accordion"
+          >
             <div className="card-body">
               {item.volumeInfo.hasOwnProperty("imageLinks") && (
                 <img
@@ -74,9 +78,7 @@ data.error !== ''?(
               </h4>
               <h5 className="card-title text-secondary fs-6">
                 {" "}
-                Auteurs :
-                
-                {item.volumeInfo.authors}
+                Auteurs :{item.volumeInfo.authors}
               </h5>
               <br />
               <p className="card-text text-start">
