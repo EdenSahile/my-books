@@ -43,50 +43,58 @@ data.error !== ''?(
 :
 (
   data.books.map(item=>{
+    console.log(item.id)
 
     return (
-      <div className="accordion" key={item.id}>
-        <div className="card mb-2">
-          <div className="card-header">
-            <h5 className="mb-0">
-              <button
-                className="btn btn-link collapsed"
-                data-toggle="collapse"
-                data-target={`#${item.id}`}
-                aria-expanded="false"
-              >
-                {item.volumeInfo.title}
-              </button>
-            </h5>
-            <div id={item.id} className="collapse" data-parent="accordion">
-              <div className="card-body">
-
-                {item.volumeInfo.hasOwnProperty('imageLinks') &&
-                <img src={item.volumeInfo.imageLinks.thumbnail}
+      <div className="card mb-2" key={item.id}>
+        <div className="card-header">
+          <h4 className="mb-0">
+            <button
+              className="btn btn-link collapsed text-dark text-decoration-none fs-5"
+              data-bs-toggle="collapse"
+              data-bs-target={`#${item.id}`}
+              aria-expanded="false"
+            >
+              {item.volumeInfo.title}
+            </button>
+          </h4>
+          <div id={item.id} className="collapse" data-bs-parent="#accordion">
+            <div className="card-body">
+              {item.volumeInfo.hasOwnProperty("imageLinks") && (
+                <img
+                  src={item.volumeInfo.imageLinks.thumbnail}
                   alt={item.volumeInfo.title}
                 />
+              )}
 
-                }
+              <br />
+              <h4 className="card-title fs-4">
+                {" "}
+                Titre : {item.volumeInfo.title}
+              </h4>
+              <h5 className="card-title text-secondary fs-6">
+                {" "}
+                Auteurs :
                 
+                {item.volumeInfo.authors}
+              </h5>
+              <br />
+              <p className="card-text text-start">
+                <strong> Description </strong>: <br />
                 <br />
-                <h4 className="card-title"> Titre : {item.volumeInfo.title}</h4>
-                <h5 className="card-title">
-                  {" "}
-                  Auteurs :{item.volumeInfo.authors}
-                </h5>
-                <p className="card-text">
-                  Description :{item.volumeInfo.description}
-                </p>
-                <a
-                  className="btn btn-outline-secondary"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={item.volumeInfo.previewLink}
-                >
-                  Plus d'infos
-                  <button className='btn btn-outline-secondary'>Enregistrer</button>
-                </a>
-              </div>
+                {item.volumeInfo.description}
+              </p>
+              <a
+                className="btn btn-outline-secondary"
+                target="_blank"
+                rel="noopener noreferrer"
+                href={item.volumeInfo.previewLink}
+              >
+                Plus d'infos
+              </a>
+              <button className="btn btn-outline-secondary ms-3 ">
+                Enregistrer
+              </button>
             </div>
           </div>
         </div>
@@ -128,9 +136,11 @@ data.error !== ''?(
           </form>
         </div>
       </div>
-
+<br/>
       <div className="container" style={{ minHeight: "200px" }}>
+         <div id="accordion" >
         {displayFetchedBooks}
+        </div>
       </div>
     </main>
   );
