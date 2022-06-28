@@ -1,23 +1,33 @@
-import {ADD_BOOK} from '../constants'
+import {ADD_BOOK} from '../constants';
+import { v4 as uuidv4 } from "uuid";
 
 const initialState={
    
     books:[]
 }
 
-const reducerAddBooks=(state=initialState, action)=>{
+const helperAddData=(action)=>{
+    return{
+
+        id:uuidv4(),
+        title:action.payload.title,
+        author:action.payload.author,
+         
+    }
+}
+
+const reducerAddBooks=(state=initialState.books, action)=>{
 
     switch (action.payload) {
       case ADD_BOOK:
-        return{
-            ...state,
-            books:action.payload
+       
+            state=[...state, helperAddData(action)]
+            return state;
            
-
-        }
-    default:
+        default:
         return state
     }
 
    
 }
+export  default reducerAddBooks
