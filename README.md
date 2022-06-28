@@ -5,6 +5,7 @@
 - Stockage des data : LocalStorage
 - Packages :
   - FlipMove
+  - React-toastify
   - uuid
   - Axios
   - Bootstrap

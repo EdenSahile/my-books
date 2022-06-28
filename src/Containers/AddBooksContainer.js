@@ -65,10 +65,10 @@ const AddBooksContainer = ({ libraryData, addBook, deleteBook, deletAll }) => {
     <main role="main">
       <div className="container-fluid">
         <div className="container text-center">
-          <h1 className="display-4">BOOKS</h1>
+          <h1 className="display-4">Ma bibliothèque</h1>
           <p>Ajouter un livre à votre bibliothèque</p>
 
-          <form
+          {/* <form
             className="form-inline justify-content-center"
             onSubmit={handleSubmit}
           >
@@ -104,9 +104,10 @@ const AddBooksContainer = ({ libraryData, addBook, deleteBook, deletAll }) => {
                 </button>
               </div>
             </div>
-          </form>
+          </form> */}
         </div>
       </div>
+      <br/>
       <div className="container" style={{ minHeight: "200px" }}>
         <div className="row">
           <div className="col-md-12">

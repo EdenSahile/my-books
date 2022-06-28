@@ -1,6 +1,15 @@
 import React,{useState} from 'react'
 import { useSelector,useDispatch } from 'react-redux'
 import {fetchBooks} from '../redux/actions/actionsFetchBooks'
+import { addBook} from '../redux/actions/actions';
+ import { ToastContainer, toast } from "react-toastify";
+ import "react-toastify/dist/ReactToastify.css";
+ import FlipMove from "react-flip-move";
+  
+
+
+
+
 
 
 const SearchBooks = () => {
@@ -17,6 +26,7 @@ const SearchBooks = () => {
     e.preventDefault(e)
     // console.log(title)
     dispatch(fetchBooks(title))
+    setTitle('')
 
   }
 
@@ -26,12 +36,25 @@ const handleChange=(e)=>{
 
 }
 
+const handleSave=(title,author)=>{
+  dispatch(addBook({title,author}));
+
+  toast.success("📖 Livre enregistré dans la bibliothèque!", {
+    position: "bottom-right",
+    autoClose: 1000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    theme: "colored",
+  });
+
+
+}
 
 
 const displayFetchedBooks=data.isLoading ?(
   <div className='d-flex justify-content-center'>
       <div className='spinner-border text-info' role='status'>
-        <span className='sr-only'>Loading ...</span>
+        <span className='sr-only'></span>
       </div>
   </div>
 
@@ -40,13 +63,20 @@ data.error !== ''?(
   <p>{data.error}</p>
 
 )
-:
+: 
 (
   data.books.map(item=>{
     console.log(item.id)
 
     return (
       <div className="card mb-2" key={item.id}>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={1000}
+          hideProgressBar={true}
+          
+        
+        />
         <div className="card-header">
           <h4 className="mb-0">
             <button
@@ -70,7 +100,6 @@ data.error !== ''?(
                   alt={item.volumeInfo.title}
                 />
               )}
-
               <br />
               <h4 className="card-title fs-4">
                 {" "}
@@ -86,6 +115,7 @@ data.error !== ''?(
                 <br />
                 {item.volumeInfo.description}
               </p>
+
               <a
                 className="btn btn-outline-secondary"
                 target="_blank"
@@ -94,7 +124,13 @@ data.error !== ''?(
               >
                 Plus d'infos
               </a>
-              <button className="btn btn-outline-secondary ms-3 ">
+
+              <button
+                className="btn btn-outline-secondary ms-3 "
+                onClick={() =>
+                  handleSave(item.volumeInfo.title, item.volumeInfo.authors)
+                }
+              >
                 Enregistrer
               </button>
             </div>
@@ -122,7 +158,7 @@ data.error !== ''?(
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Votre recherche"
+                  placeholder="Recherche par titre, auteur"
                   required
                   value={title}
                   onChange={(e) => handleChange(e)}
@@ -141,7 +177,9 @@ data.error !== ''?(
 <br/>
       <div className="container" style={{ minHeight: "200px" }}>
          <div id="accordion" >
+           <FlipMove>
         {displayFetchedBooks}
+        </FlipMove>
         </div>
       </div>
     </main>
