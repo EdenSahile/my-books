@@ -2,12 +2,13 @@
 
 
 - API  Google Books
-- Librairies : Bootstrap
 - Stockage des data : LocalStorage
-- Packages 
+- Packages :
   - FlipMove
   - uuid
   - Axios
+  - Bootstrap
+  - react-redux / redux
 - Router
 - Redux
   - Thunk
