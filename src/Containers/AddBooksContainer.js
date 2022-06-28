@@ -16,14 +16,33 @@ const AddBooksContainer = ({ libraryData, addBook }) => {
     e.preventDefault();
 
     addBook(newData)
-    
+
     setNewData({
         title:"",
         author:""
     })
 };
 
+
+
+const displayData= libraryData.length>0 ?
+
+
+libraryData.map(data=>{
+    return(
+        <li key={data.id}  
+        className="list-group-item list-group-light d-flex justify-content-between">
+            <span><strong>Title:</strong>{data.title}</span>
+            <span><strong>Auteur:</strong>{data.author}</span>
+             <span className="btn btn-danger">X</span>
+        </li>
+    )
  
+}):
+
+<p className="text-center">Aucune data à afficher</p>
+
+
  
   return (
     <main role="main">
@@ -74,14 +93,10 @@ const AddBooksContainer = ({ libraryData, addBook }) => {
       <div className="container" style={{ minHeight: "200px" }}>
         <div className="row">
           <div className="col-md-12">
-            <ul className="list-group">
-              <li>liste livres</li>
-            </ul>
+            <ul className="list-group">{displayData}</ul>
             <div className="d-flex justify-content-center">
-              <button className="btn btn-danger mt-4 mb-5">
-                Effacer tous les livres
-              </button>
-            </div>
+                <button className="btn btn-danger mt-4 mb-5">Effacer tous les livres
+                </button></div>
           </div>
         </div>
       </div>
