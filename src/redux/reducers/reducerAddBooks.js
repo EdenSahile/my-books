@@ -1,4 +1,4 @@
-import {ADD_BOOK} from '../constants';
+import {ADD_BOOK,DELETE_BOOK} from '../constants';
 import { v4 as uuiv4 } from "uuid";
 
 const initialState={
@@ -13,6 +13,19 @@ const helperAddData=(action)=>{
       author: action.payload.author,
     };
 }
+
+const removeDataById=(state,id)=>{
+
+const booksFiltered=state.filter(book=>{
+    return book.id !== id;
+
+})
+return booksFiltered;
+  
+
+
+}
+
 
 const reducerAddBooks=(state=initialState.books, action)=>{
 
@@ -29,6 +42,15 @@ const reducerAddBooks=(state=initialState.books, action)=>{
         state=[...state, helperAddData(action)]
             localStorage.setItem("booksData",JSON.stringify(state));
             return state;
+        
+        case DELETE_BOOK:
+
+       state= removeDataById(state,action.payload)
+       localStorage.setItem("booksData",JSON.stringify(state))
+
+        return state
+
+            
            
         default:
             return state

@@ -1,54 +1,63 @@
 import React,{useState} from "react";
 import { connect } from "react-redux";
-import { addBook } from "../redux/actions/actions";
+import { addBook,deleteBook } from "../redux/actions/actions";
+import FlipMove from "react-flip-move";
 
-const AddBooksContainer = ({ libraryData, addBook }) => {
-
+const AddBooksContainer = ({ libraryData, addBook, deleteBook }) => {
   const [newData, setNewData] = useState({
     title: "",
     author: "",
   });
 
-  console.log(libraryData)
+  console.log(libraryData);
 
   const handleSubmit = (e) => {
-
     e.preventDefault();
 
-    addBook(newData)
+    addBook(newData);
 
     setNewData({
-        title:"",
-        author:""
-    })
-};
+      title: "",
+      author: "",
+    });
+  };
 
+  const displayData =
+    libraryData.length > 0 ? (
+      <FlipMove>
+        {libraryData.map((data) => {
+          return (
+            <li
+              key={data.id}
+              className="list-group-item list-group-light d-flex justify-content-between"
+            >
+              <span>
+                <strong>Title:</strong>
+                {data.title}
+              </span>
+              <span>
+                <strong>Auteur:</strong>
+                {data.author}
+              </span>
+              <span 
+              className="btn btn-danger"
+              onClick={()=>deleteBook(data.id)}
+              >X</span>
+            </li>
+          );
+        })}
+      </FlipMove>
+    ) : (
+      <p className="text-center">Aucune data à afficher</p>
+    );
 
+  const deletedAllBooks = libraryData.length > 0 && (
+    <button 
+    className="btn btn-danger mt-4 mb-5">
+      Effacer tous les livres
+    </button>
+  );
 
-const displayData= libraryData.length>0 ?
-
-
-libraryData.map(data=>{
-    return(
-        <li key={data.id}  
-        className="list-group-item list-group-light d-flex justify-content-between">
-            <span><strong>Title:</strong>{data.title}</span>
-            <span><strong>Auteur:</strong>{data.author}</span>
-             <span className="btn btn-danger">X</span>
-        </li>
-    )
- 
-}):
-
-<p className="text-center">Aucune data à afficher</p>
-
-
-const deletedAllBooks = libraryData.length > 0 && (
-  <button className="btn btn-danger mt-4 mb-5">Effacer tous les livres</button>
-);
-
-
- 
   return (
     <main role="main">
       <div className="container-fluid">
@@ -124,7 +133,9 @@ const mapDispatchToProps=(dispatch)=>{
     return{
 
         
-       addBook:(param)=>dispatch(addBook(param))
+       addBook:(param)=>dispatch(addBook(param)),
+       deleteBook:(id)=>dispatch(deleteBook(id))
+
 
 
     }
