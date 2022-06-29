@@ -3,3 +3,7 @@
   background-color:rgb(18, 17, 17);
   color:rgb(244, 244, 244);
 }
+
+ .Toastify__toast--success {
+  box-shadow:none!important
+ }

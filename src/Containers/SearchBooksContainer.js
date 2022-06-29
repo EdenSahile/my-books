@@ -49,6 +49,7 @@ const SearchBooksContainer = () => {
             position="bottom-right"
             autoClose={1000}
             hideProgressBar={true}
+            
           />
           <div className="card-header">
             <h4 className="mb-0 text-center">
@@ -103,8 +104,9 @@ const SearchBooksContainer = () => {
                   rel="noopener noreferrer"
                   href={item.volumeInfo.previewLink}
                 >
-                  Feuilleter l'ouvrage
+                  En savoir plus
                 </a>
+            
                 <button
                   className="btn btn-outline-secondary ms-3 "
                   onClick={() =>
