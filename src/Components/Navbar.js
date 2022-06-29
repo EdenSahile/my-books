@@ -16,7 +16,7 @@ const Navbar = () => {
              Bibliotheque
            </Link>
            &nbsp;
-           <Link to="/" className="btn btn-light">
+           <Link to="/my-books" className="btn btn-light">
              Rechercher
            </Link>
          </nav>
