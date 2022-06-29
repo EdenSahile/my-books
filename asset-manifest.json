@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/my-books/static/css/main.fa15c8ba.css",
-    "main.js": "/my-books/static/js/main.646efe0a.js",
+    "main.js": "/my-books/static/js/main.21b957a1.js",
     "static/media/empty-shelves.gif": "/my-books/static/media/empty-shelves.5a1b141759f1999a4654.gif",
     "static/media/imgNotAvailable.png": "/my-books/static/media/imgNotAvailable.baba1a7394e8054d69cf.png",
     "index.html": "/my-books/index.html",
     "main.fa15c8ba.css.map": "/my-books/static/css/main.fa15c8ba.css.map",
-    "main.646efe0a.js.map": "/my-books/static/js/main.646efe0a.js.map"
+    "main.21b957a1.js.map": "/my-books/static/js/main.21b957a1.js.map"
   },
   "entrypoints": [
     "static/css/main.fa15c8ba.css",
-    "static/js/main.646efe0a.js"
+    "static/js/main.21b957a1.js"
   ]
 }
