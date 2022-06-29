@@ -1,3 +1,4 @@
+
 .btn-light:hover{
 
   background-color:rgb(18, 17, 17);
@@ -7,3 +8,21 @@
  .Toastify__toast--success {
   box-shadow:none!important
  }
+
+ header,footer{
+   background-color: #D32539;
+ }
+
+
+ .btn-outline-red{
+   border-color:rgb(199, 199, 199);
+
+ }
+ .btn-outline-red:hover{
+    background-color: #D32539;
+    color:rgb(244, 244, 244);
+
+ }
+
+
+

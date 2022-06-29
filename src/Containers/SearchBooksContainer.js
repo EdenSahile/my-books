@@ -49,7 +49,6 @@ const SearchBooksContainer = () => {
             position="bottom-right"
             autoClose={1000}
             hideProgressBar={true}
-            
           />
           <div className="card-header">
             <h4 className="mb-0 text-center">
@@ -99,16 +98,16 @@ const SearchBooksContainer = () => {
                   )}
                 </p>
                 <a
-                  className="btn btn-outline-secondary"
+                  className="btn btn-outline-red"
                   target="_blank"
                   rel="noopener noreferrer"
                   href={item.volumeInfo.previewLink}
                 >
                   En savoir plus
                 </a>
-            
+
                 <button
-                  className="btn btn-outline-secondary ms-3 "
+                  className="btn btn-outline-red ms-3 "
                   onClick={() =>
                     handleSave(item.volumeInfo.title, item.volumeInfo.authors)
                   }
@@ -144,9 +143,7 @@ const SearchBooksContainer = () => {
                 />
               </div>
               <div className="col-md-3">
-                <button className="btn btn-outline-secondary">
-                  Rechercher
-                </button>
+                <button className="btn btn-outline-red">Rechercher</button>
               </div>
             </div>
           </form>
