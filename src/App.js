@@ -4,7 +4,7 @@ import './App.css';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import BibliothequeContainer from './Containers/BibliothequeContainer';
-import SearchBooks from './Containers/SearchBooks.js';
+import SearchBooksContainer from "./Containers/SearchBooksContainer.js";
 
 
 function App() {
@@ -14,9 +14,9 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
-        <Route path="/" element={<SearchBooks />} />
+        <Route path="/" element={<SearchBooksContainer />} />
 
-        <Route path="/bibliotheque" element={<BibliothequeContainer/>} />
+        <Route path="/bibliotheque" element={<BibliothequeContainer />} />
       </Routes>
       <Footer />
     </div>

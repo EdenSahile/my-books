@@ -1,37 +1,40 @@
-// import React,{useState} from "react";
-import React from "react";
-import { connect } from "react-redux";
-import { addBook,deleteBook,deleteAllBooks } from "../redux/actions/actions";
+import React,{ useSelector, useDispatch } from "react-redux";
+import { deletBook, deleteAllBooks } from "../redux/actions/actions";
 import FlipMove from "react-flip-move";
 
-const BibliothequeContainer = ({
-  libraryData,
-  addBook,
-  deleteBook,
-  deletAll,
-}) => {
+const BibliothequeContainer = () => {
 
+  const data = useSelector((state) => state.library);
+  const dispatch = useDispatch();
 
+  const handledeleteBook = (id) => {
+    dispatch(deletBook(id));
+  };
+  const handledeleteAllBooks = () => {
+      dispatch(deleteAllBooks());
+    };
+    
   const displayData =
-    libraryData.length > 0 ? (
+    data.length > 0 ? (
       <FlipMove>
-        {libraryData.map((data) => {
+        {data.map((item) => {
           return (
             <li
-              key={data.id}
+              key={item.id}
               className="list-group-item list-group-light d-flex justify-content-between"
             >
               <span>
                 <strong>Title:</strong>
-                {data.title}
+                {item.title}
               </span>
               <span>
                 <strong>Auteur:</strong>
-                {data.author}
+                {item.author}
               </span>
               <span
                 className="btn btn-danger"
-                onClick={() => deleteBook(data.id)}
+             
+                onClick={() => handledeleteBook(item.id)}
               >
                 X
               </span>
@@ -42,13 +45,14 @@ const BibliothequeContainer = ({
     ) : (
       <p className="text-center">Aucune livre à afficher</p>
     );
-
-  const deletedAllBooks = libraryData.length > 0 && (
-    <button className="btn btn-danger mt-4 mb-5" onClick={() => deletAll()}>
+  const deletedAllBooks = data.length > 0 && (
+    <button
+      className="btn btn-danger mt-4 mb-5"
+      onClick={() => handledeleteAllBooks()}
+    >
       Effacer tous les livres
     </button>
   );
-
   return (
     <main role="main">
       <div className="container-fluid">
@@ -71,33 +75,4 @@ const BibliothequeContainer = ({
     </main>
   );
 };
-
-const mapStateToProps=(state)=>{
-
-    return{
-
-       libraryData:state.library
-
-
-    }
-}
-
-const mapDispatchToProps=(dispatch)=>{
-
-    return{
-
-        
-       addBook:(param)=>dispatch(addBook(param)),
-       deleteBook:(id)=>dispatch(deleteBook(id)),
-       deletAll:()=>dispatch(deleteAllBooks())
-
-
-
-    }
-}
-
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BibliothequeContainer);
+export default BibliothequeContainer;

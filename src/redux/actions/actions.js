@@ -11,7 +11,7 @@ export const addBook=(data)=>{
     }
 }
 
-export const deleteBook=(id)=>{
+export const deletBook=(id)=>{
     return{
         type:DELETE_BOOK,
         payload:id
