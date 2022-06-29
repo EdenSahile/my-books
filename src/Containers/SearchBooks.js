@@ -5,15 +5,10 @@ import { addBook} from '../redux/actions/actions';
  import { ToastContainer, toast } from "react-toastify";
  import "react-toastify/dist/ReactToastify.css";
  import FlipMove from "react-flip-move";
+ import imgNotAvailable  from "../images/imgNotAvailable.png";
   
 
-
-
-
-
-
 const SearchBooks = () => {
-
 
   const [title, setTitle]=useState('')
 
@@ -24,7 +19,6 @@ const SearchBooks = () => {
 
   const handleSubmit=(e)=>{
     e.preventDefault(e)
-    // console.log(title)
     dispatch(fetchBooks(title))
     setTitle('')
 
@@ -74,11 +68,9 @@ data.error !== ''?(
           position="bottom-right"
           autoClose={1000}
           hideProgressBar={true}
-          
-        
         />
         <div className="card-header">
-          <h4 className="mb-0">
+          <h4 className="mb-0 text-center">
             <button
               className="btn btn-link collapsed text-dark text-decoration-none fs-5"
               data-bs-toggle="collapse"
@@ -93,15 +85,18 @@ data.error !== ''?(
             className="collapse"
             data-bs-parent="#accordion"
           >
-            <div className="card-body">
-              {item.volumeInfo.hasOwnProperty("imageLinks") && (
+            <div className="card-body text-center">
+              {item.volumeInfo.hasOwnProperty("imageLinks") ? (
                 <img
                   src={item.volumeInfo.imageLinks.thumbnail}
                   alt={item.volumeInfo.title}
                 />
+              ) : (
+                <img src={imgNotAvailable} alt="" width="150" />
               )}
               <br />
-              <h4 className="card-title fs-4">
+              <br />
+              <h4 className="card-title fs-2">
                 {" "}
                 Titre : {item.volumeInfo.title}
               </h4>
@@ -113,7 +108,13 @@ data.error !== ''?(
               <p className="card-text text-start">
                 <strong> Description </strong>: <br />
                 <br />
-                {item.volumeInfo.description}
+                {item.volumeInfo.description ? (
+                  item.volumeInfo.description
+                ) : (
+                  <span className="fst-italic">
+                    La description n'est pas disponible
+                  </span>
+                )}
               </p>
 
               <a
@@ -122,7 +123,7 @@ data.error !== ''?(
                 rel="noopener noreferrer"
                 href={item.volumeInfo.previewLink}
               >
-                Plus d'infos
+                Feuilleter l'ouvrage
               </a>
 
               <button
@@ -146,8 +147,8 @@ data.error !== ''?(
     <main role="main">
       <div className="container-fluid">
         <div className="container text-center">
-          <h1 className="display-4">BOOKS</h1>
-          <p>Indiquer le sujet du livre à rechercher sur Google API</p>
+          <h1 className="display-5">BOOKS</h1>
+          <p>Saisissez le titre à rechercher sur Google API</p>
 
           <form
             className="form-inline justify-content-center"

@@ -13,7 +13,7 @@ const Navbar = () => {
          </h4>
          <nav className="btn-group">
            <Link to="/bibliotheque" className="btn btn-light">
-             bibliotheque
+             Bibliotheque
            </Link>
            &nbsp;
            <Link to="/" className="btn btn-light">
