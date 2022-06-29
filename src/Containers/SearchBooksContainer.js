@@ -83,7 +83,7 @@ const SearchBooksContainer = () => {
                 </h4>
                 <h5 className="card-title text-secondary fs-6">
                   {" "}
-                  Auteurs :{item.volumeInfo.authors}
+                  Auteur :{item.volumeInfo.authors}
                 </h5>
                 <br />
                 <p className="card-text text-start">
