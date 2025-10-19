@@ -16,4 +16,6 @@
   - ApplyMiddleware
 
 Consulter le projet en ligne : https://edensahile.github.io/my-books/
+<br>
+*💡 Astuce : Faites clic droit > "Ouvrir dans un nouvel onglet" pour garder mon profil ouvert*
 
